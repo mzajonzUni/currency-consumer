@@ -1,25 +1,24 @@
-package pl.zajonz.currencyconsumer;
+package pl.zajonz.currencyconsumer.service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
+import pl.zajonz.currencyconsumer.model.CurrenciesMessage;
+import pl.zajonz.currencyconsumer.repository.CurrencyConsumerRepository;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Slf4j
 public class CurrencyConsumerService {
-    
-    @RabbitListener(queues = "currencies")
-    public void rabbitListener(String s){
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter());
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
-        System.out.println(gson.fromJson(s,CurrenciesMessage.class).toString());
+
+    private final CurrencyConsumerRepository currencyConsumerRepository;
+
+    @Async
+    @RabbitListener(queues = "${currencies.queue}")
+    public void listen(CurrenciesMessage message) {
+            log.info(message.toString());
+            currencyConsumerRepository.save(message);
     }
-
-
 }

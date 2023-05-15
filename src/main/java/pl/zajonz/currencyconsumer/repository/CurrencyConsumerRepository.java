@@ -1,10 +1,8 @@
-package pl.zajonz.currencyconsumer;
+package pl.zajonz.currencyconsumer.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.zajonz.currencyconsumer.model.Currency;
+import pl.zajonz.currencyconsumer.model.CurrenciesMessage;
 
-public interface CurrencyConsumerRepository extends JpaRepository<Currency,String> {
-
-
+public interface CurrencyConsumerRepository extends JpaRepository<CurrenciesMessage,String> {
 
 }

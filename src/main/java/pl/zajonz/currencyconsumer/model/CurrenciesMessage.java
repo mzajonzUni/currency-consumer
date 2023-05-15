@@ -5,18 +5,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "currency")
-public class CurrencyMessage implements Serializable {
-
+public class CurrenciesMessage {
     @Id
     private String currency;
     private LocalDate timestamp;
