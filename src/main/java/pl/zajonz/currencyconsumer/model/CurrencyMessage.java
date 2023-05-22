@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "currency")
-public class CurrenciesMessage {
+public class CurrencyMessage {
     @Id
     private String currency;
     private LocalDate timestamp;
@@ -23,7 +23,7 @@ public class CurrenciesMessage {
 
     @Override
     public String toString() {
-        return "CurrenciesMessage{" +
+        return "CurrencyMessage{" +
                 "currency='" + currency + '\'' +
                 ", timestamp=" + timestamp +
                 ", bid=" + bid +

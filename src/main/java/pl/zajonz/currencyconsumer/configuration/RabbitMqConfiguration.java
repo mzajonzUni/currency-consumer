@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import pl.zajonz.currencyconsumer.model.CurrenciesMessage;
+import pl.zajonz.currencyconsumer.model.CurrencyMessage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +58,7 @@ public class RabbitMqConfiguration {
     public DefaultClassMapper classMapper() {
         DefaultClassMapper classMapper = new DefaultClassMapper();
         Map<String, Class<?>> idClassMapping = new HashMap<>();
-        idClassMapping.put("CurrenciesMessage", CurrenciesMessage.class);
+        idClassMapping.put("CurrenciesMessage", CurrencyMessage.class);
         classMapper.setIdClassMapping(idClassMapping);
         return classMapper;
     }
